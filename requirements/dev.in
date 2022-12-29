@@ -1,0 +1,27 @@
+-c base.txt
+-r base.txt
+
+# dev
+
+black
+bpython
+commitizen
+flake8
+invoke
+isort
+pip-tools
+powerline-status
+pre-commit
+pycodestyle
+tomli
+
+# test
+
+Faker
+pytest-cov
+pytest-dotenv
+pytest-forked
+pytest-logger
+pytest-mock
+pytest-sugar
+pytest-xdist

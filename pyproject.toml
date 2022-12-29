@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 120
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.isort]
+profile = "black"
+skip = ["node_modules", ".git", "__pycache__", "LC_MESSAGES", "venv", ".venv"]
+blocked_extensions = ["rst", "html", "js", "svg", "txt", "css", "scss", "png", "snap", "ts", "tsx"]
+known_first_party = "garmin_activity_share"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+default_section = "THIRDPARTY"
+
+[tool.commitizen]
+version = "0.0.0"
+version_files = [
+    "garmin_activity_share/__init__.py",
+]
+tag_format = "v$major.$minor.$patch"
+annotated_tag = true
+update_changelog_on_bump = false
+# changelog_file = "CHANGELOG.md"
+# changelog_incremental = true
