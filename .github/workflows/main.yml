@@ -1,0 +1,218 @@
+name: Continuous Integration
+
+env:
+  TERM: screen-256color
+
+on:
+  pull_request:
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
+
+  push:
+    branches: ["master", "main"]
+    paths-ignore: ["docs/**"]
+    tags:
+      - "v*"
+
+jobs:
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_isort:
+    runs-on: ubuntu-22.04
+    container: python:3.11-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q isort==5.11.4
+
+      - name: isort
+        run: |
+          isort . --check-only --profile black
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_black:
+    runs-on: ubuntu-22.04
+    container: python:3.11-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q black==22.12.0
+
+      - name: black
+        run: |
+          black . --check
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  linter_flake8:
+    runs-on: ubuntu-22.04
+    container: python:3.11-slim-bullseye
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: |
+          pip install -q flake8==6.0.0
+
+      - name: flake8
+        run: |
+          flake8 tests garmin_activity_share
+
+  # runs all of the steps inside the specified container rather than on the VM host.
+  # Because of this the network configuration changes from host based network to a container network.
+  pytest:
+    runs-on: ubuntu-22.04
+    needs: [linter_isort, linter_black, linter_flake8]
+    container: python:3.11-slim-bullseye
+
+    # env:
+    #   ITEM: value
+    #   ANOTHER_ITEM: another_value
+    #   FOO: bar
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      # https://github.com/actions/runner/issues/652
+      # - name: Get pip cache dir
+      #   id: pip-cache
+      #   run: |
+      #     echo "::set-output name=dir::$(pip cache dir)"
+
+      # - name: pip cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ${{ steps.pip-cache.outputs.dir }}
+      #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements-dev.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pip-
+
+      - name: Install Dependencies
+        shell: bash
+        run: |
+
+          export DEBIAN_FRONTEND=noninteractive
+          export PYTHONUNBUFFERED=1
+          export PYTHONHASHSEED=random
+          ln -fs /usr/share/zoneinfo/Africa/Lusaka /etc/localtime
+          dpkg-reconfigure --frontend noninteractive tzdata
+          apt-get update -y
+          apt-get install -y --no-install-recommends \
+            build-essential \
+            curl \
+            git
+          python -VV # Print out python version for debugging
+          which python # for debugging
+          pip3 install virtualenv
+          virtualenv ../venv
+          source ../venv/bin/activate
+          export LC_ALL=C.UTF-8
+          export LANG=C.UTF-8
+          pip install --upgrade pip
+          # pip install pip-tools
+          # pip-compile requirements/dev.in --output-file requirements/dev.txt
+          # pip-sync requirements-dev.txt
+          pip install -r requirements-dev.txt
+          pip install codecov
+
+      - name: test
+        shell: bash
+        run: |
+
+          # Note that you have to activate the virtualenv in every step
+          # because GitHub actions doesn't preserve the environment
+          source ../venv/bin/activate
+
+          # Run tests
+          pytest
+
+      - name: Upload Coverage to Codecov
+        uses: "codecov/codecov-action@v2"
+        with:
+          fail_ci_if_error: true
+
+  # Runs all steps on the VM
+  # Creates a GitHub Release when the lint & test jobs succeeds, and only on pushes to tags.
+  release:
+    needs: [linter_isort, linter_black, linter_flake8, pytest]
+
+    if: needs.pytest.result == 'success' && startsWith( github.ref, 'refs/tags/v' )
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install invoke colorama tomli
+      - name: Get the version
+        id: get_version
+        run: |
+          echo "${{ github.ref }}"
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Generate Release Title
+        id: get_release_title
+        shell: bash
+        run: |
+          export TODAY="($(TZ=Africa/Lusaka date --iso))"
+          echo ::set-output name=RELEASE_NAME::"${{ steps.get_version.outputs.VERSION }} $TODAY"
+      - name: Extract Release Notes
+        # This creates a file LATEST_RELEASE_NOTES.md in the parent directory (../)
+        shell: bash
+        run: |
+          invoke get-release-notes
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.get_release_title.outputs.RELEASE_NAME }}
+          body_path: ../LATEST_RELEASE_NOTES.md
+
+  # deploy_railway:
+  #   needs: [linter_isort,linter_black,linter_flake8,pytest]
+  #   if: needs.pytest.result == 'success'
+  #   runs-on: ubuntu-22.04
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - name: Install Railway
+  #       run: npm i -g @railway/cli
+
+  #     - name: Deploy
+  #       run: railway up
+  #       env:
+  #         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # deploy_dokku:
+  #   needs: [linter_isort,linter_black,linter_flake8,pytest]
+  #   if: needs.pytest.result == 'success'
+  #   runs-on: ubuntu-22.04
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: Push to dokku
+  #       uses: dokku/github-action@master
+  #       with:
+  #         # specify the `main` branch as the remote branch to push to
+  #         branch: 'main'
+  #         git_remote_url: ${{ secrets.GIT_REMOTE_URL }}
+  #         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}

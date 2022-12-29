@@ -1,0 +1,44 @@
+{
+  "extends": ["config:base"],
+  "labels": ["dependencies", "python"],
+  "packageRules": [
+    {
+      "excludePackagePatterns": [
+        "beautifulsoup4",
+        "requests",
+        "tweepy",
+        "sentry-sdk"
+      ],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "build",
+      "semanticCommitScope": "deps-dev"
+    },
+    {
+      "matchPackagePatterns": [
+        "beautifulsoup4",
+        "requests",
+        "tweepy",
+        "sentry-sdk"
+      ],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "build",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "updateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "semanticCommitType": "ci"
+    }
+  ],
+  "timezone": "Africa/Lusaka",
+  "schedule": ["after 5pm every weekday", "every weekend"]
+}
