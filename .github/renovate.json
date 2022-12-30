@@ -4,10 +4,13 @@
   "packageRules": [
     {
       "excludePackagePatterns": [
-        "beautifulsoup4",
+        "garminconnect",
+        "Pillow",
+        "python-dotenv",
+        "pytz",
         "requests",
-        "tweepy",
-        "sentry-sdk"
+        "sentry-sdk",
+        "tweepy"
       ],
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
@@ -16,10 +19,13 @@
     },
     {
       "matchPackagePatterns": [
-        "beautifulsoup4",
+        "garminconnect",
+        "Pillow",
+        "python-dotenv",
+        "pytz",
         "requests",
-        "tweepy",
-        "sentry-sdk"
+        "sentry-sdk",
+        "tweepy"
       ],
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
