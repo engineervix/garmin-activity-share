@@ -76,10 +76,18 @@ jobs:
     needs: [linter_isort, linter_black, linter_flake8]
     container: python:3.11-slim-bullseye
 
-    # env:
-    #   ITEM: value
-    #   ANOTHER_ITEM: another_value
-    #   FOO: bar
+    env:
+      # Twitter
+      API_KEY: fake
+      API_KEY_SECRET: fake
+      BEARER_TOKEN: fake
+      ACCESS_TOKEN: fake
+      ACCESS_TOKEN_SECRET: fake
+      CLIENT_ID: fake
+      CLIENT_SECRET: fake
+      # Garmin
+      GARMIN_CONNECT_EMAIL: fake
+      GARMIN_CONNECT_AUTH: fake
 
     steps:
       - name: Checkout Code Repository
