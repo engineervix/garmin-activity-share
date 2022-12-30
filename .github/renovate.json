@@ -10,7 +10,8 @@
         "pytz",
         "requests",
         "sentry-sdk",
-        "tweepy"
+        "tweepy",
+        "invoke"
       ],
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
@@ -25,7 +26,8 @@
         "pytz",
         "requests",
         "sentry-sdk",
-        "tweepy"
+        "tweepy",
+        "invoke"
       ],
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true,
