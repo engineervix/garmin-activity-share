@@ -34,6 +34,10 @@ cloudscraper==1.2.66
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   garminconnect
+colorama==0.4.6
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 curtsies==0.4.1
     # via
     #   -c requirements/base.txt

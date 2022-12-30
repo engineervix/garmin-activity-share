@@ -16,6 +16,8 @@ charset-normalizer==2.1.1
     # via requests
 cloudscraper==1.2.66
     # via garminconnect
+colorama==0.4.6
+    # via -r requirements/base.in
 curtsies==0.4.1
     # via bpython
 cwcwidth==0.1.8

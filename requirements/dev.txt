@@ -49,7 +49,10 @@ cloudscraper==1.2.66
     #   -r requirements/base.txt
     #   garminconnect
 colorama==0.4.6
-    # via commitizen
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   commitizen
 commitizen==2.38.0
     # via -r requirements/dev.in
 coverage[toml]==7.0.1

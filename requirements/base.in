@@ -5,11 +5,12 @@ Pillow
 python-dotenv
 pytz
 requests
-tomli
 tweepy
 
 # utilities
 bpython
+colorama
+tomli
 invoke
 
 # redis
