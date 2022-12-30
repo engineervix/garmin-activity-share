@@ -4,10 +4,8 @@
 # dev
 
 black
-bpython
 commitizen
 flake8
-invoke
 isort
 pip-tools
 powerline-status

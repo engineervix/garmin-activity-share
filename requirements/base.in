@@ -6,3 +6,11 @@ python-dotenv
 pytz
 requests
 tweepy
+
+# utilities
+bpython
+invoke
+
+# redis
+redis
+hiredis
