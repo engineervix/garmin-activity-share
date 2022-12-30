@@ -5,8 +5,8 @@ import random
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from dotenv import load_dotenv
 import redis
+from dotenv import load_dotenv
 from PIL import Image, ImageDraw, ImageFont
 
 load_dotenv()
