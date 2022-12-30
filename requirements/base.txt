@@ -4,31 +4,58 @@
 #
 #    pip-compile --output-file=requirements/base.txt requirements/base.in
 #
+async-timeout==4.0.2
+    # via redis
+blessed==1.19.1
+    # via curtsies
+bpython==0.23
+    # via -r requirements/base.in
 certifi==2022.12.7
     # via requests
 charset-normalizer==2.1.1
     # via requests
 cloudscraper==1.2.66
     # via garminconnect
+colorama==0.4.6
+    # via -r requirements/base.in
+curtsies==0.4.1
+    # via bpython
+cwcwidth==0.1.8
+    # via
+    #   bpython
+    #   curtsies
 garminconnect==0.1.49
+    # via -r requirements/base.in
+greenlet==2.0.1
+    # via bpython
+hiredis==2.1.0
     # via -r requirements/base.in
 idna==3.4
     # via requests
+invoke==1.7.3
+    # via -r requirements/base.in
 oauthlib==3.2.2
     # via
     #   requests-oauthlib
     #   tweepy
 pillow==9.3.0
     # via -r requirements/base.in
+pygments==2.13.0
+    # via bpython
 pyparsing==3.0.9
     # via cloudscraper
 python-dotenv==0.21.0
     # via -r requirements/base.in
 pytz==2022.7
     # via -r requirements/base.in
+pyxdg==0.28
+    # via bpython
+redis==4.4.0
+    # via -r requirements/base.in
 requests==2.28.1
     # via
     #   -r requirements/base.in
+    #   bpython
     #   cloudscraper
     #   garminconnect
     #   requests-oauthlib
@@ -38,7 +65,13 @@ requests-oauthlib==1.3.1
     # via tweepy
 requests-toolbelt==0.10.1
     # via cloudscraper
+six==1.16.0
+    # via blessed
+tomli==2.0.1
+    # via -r requirements/base.in
 tweepy==4.12.1
     # via -r requirements/base.in
 urllib3==1.26.13
     # via requests
+wcwidth==0.2.5
+    # via blessed

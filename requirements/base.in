@@ -1,8 +1,17 @@
 # core
-
 garminconnect
 Pillow
 python-dotenv
 pytz
 requests
 tweepy
+
+# utilities
+bpython
+colorama
+tomli
+invoke
+
+# redis
+redis
+hiredis

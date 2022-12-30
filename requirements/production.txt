@@ -4,6 +4,20 @@
 #
 #    pip-compile --output-file=requirements/production.txt requirements/production.in
 #
+async-timeout==4.0.2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   redis
+blessed==1.19.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   curtsies
+bpython==0.23
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 certifi==2022.12.7
     # via
     #   -c requirements/base.txt
@@ -20,7 +34,31 @@ cloudscraper==1.2.66
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   garminconnect
+colorama==0.4.6
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+curtsies==0.4.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   bpython
+cwcwidth==0.1.8
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   bpython
+    #   curtsies
 garminconnect==0.1.49
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+greenlet==2.0.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   bpython
+hiredis==2.1.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
@@ -29,6 +67,10 @@ idna==3.4
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
+invoke==1.7.3
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 oauthlib==3.2.2
     # via
     #   -c requirements/base.txt
@@ -39,6 +81,11 @@ pillow==9.3.0
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+pygments==2.13.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   bpython
 pyparsing==3.0.9
     # via
     #   -c requirements/base.txt
@@ -52,10 +99,20 @@ pytz==2022.7
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+pyxdg==0.28
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   bpython
+redis==4.4.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 requests==2.28.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   bpython
     #   cloudscraper
     #   garminconnect
     #   requests-oauthlib
@@ -73,6 +130,15 @@ requests-toolbelt==0.10.1
     #   cloudscraper
 sentry-sdk==1.12.1
     # via -r requirements/production.in
+six==1.16.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   blessed
+tomli==2.0.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 tweepy==4.12.1
     # via
     #   -c requirements/base.txt
@@ -83,3 +149,8 @@ urllib3==1.26.13
     #   -r requirements/base.txt
     #   requests
     #   sentry-sdk
+wcwidth==0.2.5
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   blessed

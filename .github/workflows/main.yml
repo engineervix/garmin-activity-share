@@ -76,6 +76,12 @@ jobs:
     needs: [linter_isort, linter_black, linter_flake8]
     container: python:3.11-slim-bullseye
 
+    services:
+      redis:
+        image: redis:7.0
+        ports:
+          - 6379:6379
+
     env:
       # Twitter
       API_KEY: fake
@@ -88,6 +94,8 @@ jobs:
       # Garmin
       GARMIN_CONNECT_EMAIL: fake
       GARMIN_CONNECT_AUTH: fake
+      # dev or production
+      MODE: dev
 
     steps:
       - name: Checkout Code Repository

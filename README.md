@@ -17,6 +17,10 @@
 
 - [Description](#description)
 - [Running the program](#running-the-program)
+  - [Pre-requisites](#pre-requisites)
+  - [Procedure](#procedure)
+- [Deployment](#deployment)
+  - [Dokku](#dokku)
 - [TODO](#todo)
 - [Assets](#assets)
   - [Icons](#icons)
@@ -41,28 +45,106 @@ For this to work, it needs to run periodically, based on your foreseen run days,
 
 ## Running the program
 
-You need to have a [Twitter developer acount](https://developer.twitter.com/), and a [Garmin Connect](https://connect.garmin.com/) account.
+### Pre-requisites
 
-1. Install dependencies
+- You need to have a [Twitter developer acount](https://developer.twitter.com/), and a [Garmin Connect](https://connect.garmin.com/) account.
+- Ensuring that you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) on your machine:
+
+  ```sh
+  # check that you have docker on your machine
+  docker -v
+  # check that you have docker-compose on your machine
+  docker-compose -v
+  ```
+
+  If you don't have Docker and Docker Compose, then click the respective links above for installation instructions for your platform.
+
+### Procedure
+
+1. Install dev dependencies in your vitual environment
 
    ```bash
-   # production
-   pip install -r requirements.txt
-
    # development
    pip install -r requirements-dev.txt
    ```
 
-2. Setup environment variables. See [`env.sample`](.env.sample) for details.
-3. `inv tweet`. This is a shortcut for `PYTHONPATH=. python garmin_activity_share/tweet.py`
+2. build and spin up docker containers (there are only 2 containers, the `bot` container and the `redis` container. Redis is used to store the retrieved data so that we can make comparisons whenever we fetch data from Garmin Connect. This ensures that we do not share the same result multiple times)
+
+   ```bash
+   docker-compose up -d --build
+   ```
+
+3. Setup environment variables. See [`env.sample`](.env.sample) for details. Copy `env.sample` to `.env` and update the new file.
+4. access the `bot` container: `inv exec bot "bash"`. This is a shortcut for `docker-compose exec bot bash`
+5. Inside the container, run `inv tweet`.
+
+## Deployment
+
+### Dokku
+
+Assuming you already have a Dokku machine, all you need to do is
+
+1. create an app
+2. install redis and link your app
+3. set environment variables
+4. remove ports (this isn't a web app)
+5. set up persistent storage
+
+The BASH commands below illustrate the above steps.
+
+```bash
+
+# create app
+sudo dokku apps:create garmin-activity-share
+
+# setup redis | https://github.com/dokku/dokku-redis
+sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis
+sudo dokku redis:create redis-garmin-activity-share
+sudo dokku redis:link redis-garmin-activity-share garmin-activity-share
+
+# set env variables
+sudo dokku config:set --no-restart garmin-activity-share API_KEY=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share API_KEY_SECRET=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share BEARER_TOKEN=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share ACCESS_TOKEN=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share ACCESS_TOKEN_SECRET=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share CLIENT_ID=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share CLIENT_SECRET=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share GARMIN_CONNECT_EMAIL=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share GARMIN_CONNECT_AUTH=xxxxx && \
+sudo dokku config:set --no-restart garmin-activity-share MODE=production
+
+# customize Docker Build-time configuration variables
+# https://dokku.com/docs/deployment/builders/dockerfiles/#build-time-configuration-variables
+sudo dokku docker-options:add garmin-activity-share build '--build-arg MODE=production'
+
+# persistent storage
+sudo dokku storage:ensure-directory --chown heroku garmin-activity-share
+sudo dokku storage:mount garmin-activity-share /var/lib/dokku/data/storage/garmin-activity-share:/home/tweepy/assets/dist
+
+# remove ports
+sudo dokku proxy:ports-remove garmin-activity-share http:80:5000
+sudo dokku proxy:ports-remove garmin-activity-share https:443:5000
+```
+
+You can adjust the cron schedule in [`app.json`](app.json) to suit your preferences. The default setup is as follows
+
+```bash
+# At minute 30 past hour 8 and 20 on every day-of-week from Monday through Saturday.
+30 8,20 * * 1-6
+```
 
 ## TODO
 
+- [ ] Save session to REDIS, instead of a JSON file
 - [ ] Fix the PYTHONPATH problem
 - [ ] Write tests
 - [ ] Share to other platforms
 - [ ] Use unsplash API for background images
 - [ ] use an API for random quotes
+- [ ] improve `Dockerfile` configuration. See <https://stackoverflow.com/questions/43654656/dockerfile-if-else-condition-with-external-arguments>
+- [ ] incorporate cron monitoring
+- [ ] setup sentry
 
 ## Assets
 

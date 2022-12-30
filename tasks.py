@@ -54,6 +54,49 @@ def pip_compile(c, base=False, dev=False, prod=False):
         c.run("invoke pip-compile --help", pty=True)
 
 
+@task(help={"build": "Build images before starting containers."})
+def up(c, build=False):
+    """docker-compose up -d"""
+    if build:
+        c.run("docker-compose up -d --build", pty=True)
+    else:
+        c.run("docker-compose up -d", pty=True)
+
+
+@task
+def exec(c, container, command):
+    """docker-compose exec [container] [command(s)]"""
+    c.run(f"docker-compose exec {container} {command}", pty=True)
+
+
+@task(help={"follow": "Follow log output"})
+def logs(c, container, follow=False):
+    """docker-compose logs [container] [-f]"""
+    if follow:
+        c.run(f"docker-compose logs {container} -f", pty=True)
+    else:
+        c.run(f"docker-compose logs {container}", pty=True)
+
+
+@task
+def stop(c):
+    """docker-compose stop"""
+    c.run("docker-compose stop", pty=True)
+
+
+@task(
+    help={
+        "volumes": "Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers."
+    }
+)
+def down(c, volumes=False):
+    """docker-compose down"""
+    if volumes:
+        c.run("docker-compose down -v", pty=True)
+    else:
+        c.run("docker-compose down", pty=True)
+
+
 def execute_bump_hack(c, branch):
     """A little hack that combines commitizen-tools and standard-version
 
