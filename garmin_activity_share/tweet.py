@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 import pytz
+import redis
 import tweepy
 from dotenv import load_dotenv
 
@@ -20,6 +21,7 @@ CONSUMER_KEY = os.getenv("API_KEY")
 CONSUMER_SECRET = os.getenv("API_KEY_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
+REDIS_URL = os.getenv("REDIS_URL")
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -70,10 +72,11 @@ def get_day_and_time_of_day():
     """
     For example, 'Wednesday evening', or 'Saturday morning'
     """
-    json_file = project_dir / "data.json"
-    if json_file.exists():
-        with open(json_file) as f:
-            data = json.load(f)
+    r = redis.from_url(REDIS_URL)
+    json_str = r.get("last_activity")
+
+    if json_str is not None:
+        data = json.loads(json_str)
 
         start_time_GMT = data["startTimeGMT"]  # e.g 2022-12-29 03:41:52
         start_time_src_fmt = "%Y-%m-%d %H:%M:%S"
@@ -83,7 +86,7 @@ def get_day_and_time_of_day():
 
         return f"{day_of_week} {time_of_day}"
     else:
-        logger.error("The data.json file doesn't exist, cannot proceed")
+        logger.error("There's no existing data to work with, cannot proceed")
         sys.exit(1)
 
 

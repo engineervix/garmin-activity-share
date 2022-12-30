@@ -1,9 +1,8 @@
-import io
 import json
 import logging
 import os
-from pathlib import Path
 
+import redis
 import requests
 from dotenv import load_dotenv
 from garminconnect import (
@@ -19,6 +18,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 GARMIN_CONNECT_EMAIL = os.getenv("GARMIN_CONNECT_EMAIL")
 GARMIN_CONNECT_AUTH = os.getenv("GARMIN_CONNECT_AUTH")
+REDIS_URL = os.getenv("REDIS_URL")
 
 
 def display_json(api_call, output):
@@ -79,15 +79,11 @@ def need_to_get_last_activity() -> bool:
     """
     Check if it's necessary to get last activity
     """
-    # Get the directory containing the script
-    script_dir = Path(__file__).parent
-    # Get the project directory
-    project_dir = script_dir.parent
+    r = redis.from_url(REDIS_URL)
+    json_str = r.get("last_activity")
 
-    data = project_dir / "data.json"
-    if data.exists():
-        with open(data) as f:
-            existing_data = json.load(f)
+    if json_str is not None:
+        existing_data = json.loads(json_str)
         api = init_api(GARMIN_CONNECT_EMAIL, GARMIN_CONNECT_AUTH)
         activity = api.get_last_activity()
         new_data = json.dumps(activity)
@@ -98,8 +94,7 @@ def need_to_get_last_activity() -> bool:
 
 def get_last_activity():
     """
-    connect to Garmin Connect, fetch latest activity and save
-    it as a timestamped JSON file in project directory
+    connect to Garmin Connect, fetch latest activity and save to redis
     """
     # Init API
     api = init_api(GARMIN_CONNECT_EMAIL, GARMIN_CONNECT_AUTH)
@@ -108,6 +103,6 @@ def get_last_activity():
     activity = api.get_last_activity()
     display_json("api.get_last_activity()", activity)
 
-    # save it as a JSON file
-    with io.open("data.json", "w", encoding="utf-8") as f:
-        f.write(json.dumps(activity, indent=4))
+    # save to redis instance
+    r = redis.from_url(REDIS_URL)
+    r.set("last_activity", json.dumps(activity))

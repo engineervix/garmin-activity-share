@@ -5,7 +5,12 @@ import random
 from datetime import datetime, timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
+import redis
 from PIL import Image, ImageDraw, ImageFont
+
+load_dotenv()
+REDIS_URL = os.getenv("REDIS_URL")
 
 
 def create_garmin_share_image():
@@ -39,10 +44,9 @@ def create_garmin_share_image():
     # Get the project directory
     project_dir = script_dir.parent
 
-    json_file = project_dir / "data.json"
-
-    with open(json_file) as f:
-        data = json.load(f)
+    r = redis.from_url(REDIS_URL)
+    json_str = r.get("last_activity")
+    data = json.loads(json_str)
 
     # here's the raw data
     activity_name = data["activityName"]
