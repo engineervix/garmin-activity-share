@@ -1,3 +1,4 @@
+import inspect
 import os
 
 import tomli
@@ -5,6 +6,17 @@ from colorama import Fore, init
 from invoke import task
 
 # from pathlib import Path
+
+# a hack to monkey patch the inspect module for invoke to work with python 3.11
+# https://github.com/pyinvoke/invoke/issues/833#issuecomment-1293148106
+if not hasattr(inspect, "getargspec"):
+    inspect.getargspec = inspect.getfullargspec
+
+
+@task
+def tweet(c):
+    """run the script"""
+    c.run("PYTHONPATH=. python garmin_activity_share/tweet.py", pty=True)
 
 
 @task
