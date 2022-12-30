@@ -3,4 +3,4 @@ Please refer to the documentation provided in the README.md
 """
 
 __author__ = """Victor Miti <https://github.com/engineervix/>"""
-__version__ = "0.0.0"
+__version__ = "0.1.0"
