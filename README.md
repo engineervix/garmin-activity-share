@@ -114,16 +114,25 @@ sudo dokku config:set --no-restart garmin-activity-share GARMIN_CONNECT_EMAIL=xx
 sudo dokku config:set --no-restart garmin-activity-share GARMIN_CONNECT_AUTH=xxxxx && \
 sudo dokku config:set --no-restart garmin-activity-share MODE=production
 
-# remove ports
-sudo dokku proxy:ports-remove garmin-activity-share http:80:5000
-sudo dokku proxy:ports-remove garmin-activity-share https:443:5000
+# customize Docker Build-time configuration variables
+# https://dokku.com/docs/deployment/builders/dockerfiles/#build-time-configuration-variables
+sudo dokku docker-options:add garmin-activity-share build '--build-arg MODE=production'
 
 # persistent storage
 sudo dokku storage:ensure-directory --chown heroku garmin-activity-share
 sudo dokku storage:mount garmin-activity-share /var/lib/dokku/data/storage/garmin-activity-share:/home/tweepy/assets/dist
+
+# remove ports
+sudo dokku proxy:ports-remove garmin-activity-share http:80:5000
+sudo dokku proxy:ports-remove garmin-activity-share https:443:5000
 ```
 
-You can adjust the cron schedule in [`app.json`](app.json) to suit your preferences.
+You can adjust the cron schedule in [`app.json`](app.json) to suit your preferences. The default setup is as follows
+
+```bash
+# At minute 30 past hour 8 and 20 on every day-of-week from Monday through Saturday.
+30 8,20 * * 1-6
+```
 
 ## TODO
 

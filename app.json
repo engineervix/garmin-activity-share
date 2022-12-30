@@ -2,7 +2,6 @@
   "cron": [
     {
       "command": "inv tweet",
-      // At minute 30 past hour 8 and 20 on every day-of-week from Monday through Saturday.
       "schedule": "30 8,20 * * 1-6"
     }
   ]
