@@ -315,3 +315,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,linux,macos,python,windows,sublimetext,visualstudiocode
+
+# Custom
+session.json
+data*.json
+# assets/dist directory has its own .gitignore
+!assets/dist/
