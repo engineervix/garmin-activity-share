@@ -4,6 +4,51 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.0](https://github.com/engineervix/garmin-activity-share/compare/v0.1.0...v0.2.0) (2022-12-30)
+
+
+### 🚀 Features
+
+* save last activity data to REDIS instead of a JSON file ([3f777d1](https://github.com/engineervix/garmin-activity-share/commit/3f777d11003097344b0b19024220501376badffa))
+
+
+### ♻️ Code Refactoring
+
+* add docker-compose related invoke tasks ([ecf487e](https://github.com/engineervix/garmin-activity-share/commit/ecf487ebeca5cfd92d2a191743fa0a9ded9fa4d9))
+* add REDIS_URL and MODE to env variables ([7b32874](https://github.com/engineervix/garmin-activity-share/commit/7b328749479db3b0b7c2487a24bfe1bc3d2f3d28))
+
+
+### 👷 CI/CD
+
+* add REDIS service to Github Actions ([60b88f5](https://github.com/engineervix/garmin-activity-share/commit/60b88f51efcc96746e4ed82a0359a76f6777d76b))
+* update GitHub Actions ENV Variables ([9e54131](https://github.com/engineervix/garmin-activity-share/commit/9e54131cb25360bfc9bf50d2d891724ff6998c06))
+
+
+### 🐛 Bug Fixes
+
+* remove comment from JSON file ([1cc0daf](https://github.com/engineervix/garmin-activity-share/commit/1cc0daf4b245cd1c425412da8cdc513dc607f3fb))
+
+
+### ⚙️ Build System
+
+* add `app.json` as part of Dokku deployment setup ([ab576fb](https://github.com/engineervix/garmin-activity-share/commit/ab576fb651f4b2b57e653a602113ab5eb08e6a9b))
+* **deps:** move colorama from dev to base ([0fcaa01](https://github.com/engineervix/garmin-activity-share/commit/0fcaa012d550b98af069a360b34f57a29227bc1c))
+* **deps:** move tomli from dev.in to base.in ([4bb8ae0](https://github.com/engineervix/garmin-activity-share/commit/4bb8ae060f784c20ffbe61f16d1bb833525517b0))
+* dockerize the app ([ea3df00](https://github.com/engineervix/garmin-activity-share/commit/ea3df00476c327bc8825b1161ebf34cefffc25cd))
+* install redis and re-organise dependencies ([4d44778](https://github.com/engineervix/garmin-activity-share/commit/4d44778de00685ca5451047c8d6b78f79815bab1))
+* set timezone in `Dockerfile` to Africa/Lusaka ([1c79cf0](https://github.com/engineervix/garmin-activity-share/commit/1c79cf000658ded77556dd07a68bb3d512155ace))
+
+
+### 💄 Styling
+
+* remove extra whitespace in base.in ([3b0cd3d](https://github.com/engineervix/garmin-activity-share/commit/3b0cd3d13b1c62928b330abe2227375407a8d536))
+
+
+### 📝 Docs
+
+* add a TODO item to save sessions to REDIS ([a8136d1](https://github.com/engineervix/garmin-activity-share/commit/a8136d1d0014dcfaa551ad018ef529ddbc1b171c))
+* rewrite README to include updated setup instructions ([e2ecf0d](https://github.com/engineervix/garmin-activity-share/commit/e2ecf0dfa080a90038362bf3957b5028b821cbec))
+
 ## [v0.1.0](https://github.com/engineervix/garmin-activity-share/compare/v0.0.0...v0.1.0) (2022-12-30)
 
 
