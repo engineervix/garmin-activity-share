@@ -15,6 +15,10 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONHASHSEED=random \
     PYTHONPATH=/home/tweepy/app
 
+# Set timezone to Africa/Lusaka
+RUN ln -fs /usr/share/zoneinfo/Africa/Lusaka /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata
+
 # Install system dependencies required by the project
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
