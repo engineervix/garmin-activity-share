@@ -1,5 +1,8 @@
 # core
 
-beautifulsoup4
+garminconnect
+Pillow
+python-dotenv
+pytz
 requests
 tweepy

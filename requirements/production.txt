@@ -4,10 +4,6 @@
 #
 #    pip-compile --output-file=requirements/production.txt requirements/production.in
 #
-beautifulsoup4==4.11.1
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.txt
 certifi==2022.12.7
     # via
     #   -c requirements/base.txt
@@ -19,6 +15,15 @@ charset-normalizer==2.1.1
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   requests
+cloudscraper==1.2.66
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   garminconnect
+garminconnect==0.1.49
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 idna==3.4
     # via
     #   -c requirements/base.txt
@@ -30,24 +35,44 @@ oauthlib==3.2.2
     #   -r requirements/base.txt
     #   requests-oauthlib
     #   tweepy
+pillow==9.3.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+pyparsing==3.0.9
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+    #   cloudscraper
+python-dotenv==0.21.0
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
+pytz==2022.7
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 requests==2.28.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
+    #   cloudscraper
+    #   garminconnect
     #   requests-oauthlib
+    #   requests-toolbelt
     #   tweepy
 requests-oauthlib==1.3.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   tweepy
-sentry-sdk==1.12.1
-    # via -r requirements/production.in
-soupsieve==2.3.2.post1
+requests-toolbelt==0.10.1
     # via
     #   -c requirements/base.txt
     #   -r requirements/base.txt
-    #   beautifulsoup4
+    #   cloudscraper
+sentry-sdk==1.12.1
+    # via -r requirements/production.in
 tweepy==4.12.1
     # via
     #   -c requirements/base.txt
