@@ -48,7 +48,7 @@ For this to work, it needs to run periodically, based on your foreseen run days,
 ### Pre-requisites
 
 - You need to have a [Twitter developer acount](https://developer.twitter.com/), and a [Garmin Connect](https://connect.garmin.com/) account.
-- Ensuring that you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) on your machine:
+- You need to have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) on your machine:
 
   ```sh
   # check that you have docker on your machine
