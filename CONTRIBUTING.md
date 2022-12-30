@@ -14,7 +14,7 @@ If you are proposing a feature:
 
 1. Follow the instructions in the **Getting Started** section of the [README.md](https://github.com/engineervix/garmin-activity-share#getting-started)
 2. Check out a new branch and add your modification.
-3. Write tests, and ensure that they pass. Use `tox` to test other Python versions.
+3. If possible, write tests, and ensure that they pass. This project uses [pytest](https://docs.pytest.org/en/7.2.x/).
 4. Update `README.md` for your changes. Please make sure that the Table of Contents is up to date. [DocToc](https://github.com/thlorenz/doctoc) makes this pretty easy, as you simply run `doctoc README.md` (You can install it globally on your system via `npm install -g doctoc`).
-5. Commit your changes via `cz commit`, following the prompts to appropriately categorize your commit.
+5. Commit your changes. If you do it via `cz commit`, you'll get some fancy prompts to help you to appropriately categorize your commit.
 6. Send a [pull request](https://github.com/engineervix/garmin-activity-share/pulls) 🙏
