@@ -65,6 +65,8 @@ requests-toolbelt==0.10.1
     # via cloudscraper
 six==1.16.0
     # via blessed
+tomli==2.0.1
+    # via -r requirements/base.in
 tweepy==4.12.1
     # via -r requirements/base.in
 urllib3==1.26.13

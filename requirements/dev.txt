@@ -249,7 +249,9 @@ termcolor==2.1.1
     #   commitizen
     #   pytest-sugar
 tomli==2.0.1
-    # via -r requirements/dev.in
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 tomlkit==0.11.6
     # via commitizen
 tweepy==4.12.1

@@ -131,6 +131,10 @@ six==1.16.0
     #   -c requirements/base.txt
     #   -r requirements/base.txt
     #   blessed
+tomli==2.0.1
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.txt
 tweepy==4.12.1
     # via
     #   -c requirements/base.txt
