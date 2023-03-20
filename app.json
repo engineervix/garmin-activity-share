@@ -2,7 +2,7 @@
   "cron": [
     {
       "command": "inv tweet",
-      "schedule": "30 8,20 * * 1-6"
+      "schedule": "30 10,22 * * 1-6"
     }
   ]
 }
