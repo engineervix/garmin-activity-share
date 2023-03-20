@@ -15,17 +15,18 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Description](#description)
-- [Running the program](#running-the-program)
-  - [Pre-requisites](#pre-requisites)
-  - [Procedure](#procedure)
-- [Deployment](#deployment)
-  - [Dokku](#dokku)
-- [TODO](#todo)
-- [Assets](#assets)
-  - [Icons](#icons)
-  - [Fonts](#fonts)
-  - [Image backgrounds](#image-backgrounds)
+- [Garmin Activity Share](#garmin-activity-share)
+  - [Description](#description)
+  - [Running the program](#running-the-program)
+    - [Pre-requisites](#pre-requisites)
+    - [Procedure](#procedure)
+  - [Deployment](#deployment)
+    - [Dokku](#dokku)
+  - [TODO](#todo)
+  - [Assets](#assets)
+    - [Icons](#icons)
+    - [Fonts](#fonts)
+    - [Image backgrounds](#image-backgrounds)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -166,3 +167,13 @@ You can adjust the cron schedule in [`app.json`](app.json) to suit your preferen
 - [`lucas-favre-JnoNcfFwrNA-unsplash.jpg`](assets/unsplash_images/lucas-favre-JnoNcfFwrNA-unsplash.jpg) by [lucas Favre](https://unsplash.com/@we_are_rising?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/JnoNcfFwrNA)
 - [`tara-glaser-WodC5zEcSLQ-unsplash.jpg`](assets/unsplash_images/tara-glaser-WodC5zEcSLQ-unsplash.jpg) by [Tara Glaser](https://unsplash.com/it/@jump2dream?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/WodC5zEcSLQ)
 - [`will-suddreth-NRA25SWe71o-unsplash.jpg`](assets/unsplash_images/will-suddreth-NRA25SWe71o-unsplash.jpg) by [Will Suddreth](https://unsplash.com/@willsudds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/NRA25SWe71o)
+- [`andrea-leopardi-QVD3Xht9txA-unsplash.jpg`](assets/unsplash_images/andrea-leopardi-QVD3Xht9txA-unsplash.jpg) by [Andrea Leopardi](https://unsplash.com/@whatyouhide?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/QVD3Xht9txA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`gary-butterfield-XGKSeGYGP0A-unsplash.jpg`](assets/unsplash_images/gary-butterfield-XGKSeGYGP0A-unsplash.jpg) by [Gary Butterfield](https://unsplash.com/@garybpt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`zac-ong-RYvOI54rmPw-unsplash.jpg`](assets/unsplash_images/zac-ong-RYvOI54rmPw-unsplash.jpg) by [Zac Ong](https://unsplash.com/@zacong?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`malik-skydsgaard-zZoE-CCid3g-unsplash.jpg`](assets/unsplash_images/malik-skydsgaard-zZoE-CCid3g-unsplash.jpg) by [Malik Skydsgaard](https://unsplash.com/@malikskyds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`kevin-andre-M2k-Kd4n-S0-unsplash.jpg`](assets/unsplash_images/kevin-andre-M2k-Kd4n-S0-unsplash.jpg) by [Kevin Andre](https://unsplash.com/de/@kevinandrephotography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`arek-adeoye-gGZ8ZynljWk-unsplash.jpg`](assets/unsplash_images/arek-adeoye-gGZ8ZynljWk-unsplash.jpg) by [Arek Adeoye](https://unsplash.com/@areksan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`jim-makos-bYy09RkQW8w-unsplash.jpg`](assets/unsplash_images/jim-makos-bYy09RkQW8w-unsplash.jpg) by [Jim Makos](https://unsplash.com/@jimmakos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`mike-cox-NrhgewTdfF8-unsplash.jpg`](assets/unsplash_images/mike-cox-NrhgewTdfF8-unsplash.jpg) by [Mike Cox](https://unsplash.com/@iprefermike?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/running?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`maxwell-nelson-UvN7K8MM-8k-unsplash.jpg`](assets/unsplash_images/maxwell-nelson-UvN7K8MM-8k-unsplash.jpg) by [Maxwell Nelson](https://unsplash.com/@maxcodes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/UvN7K8MM-8k?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- [`will-suddreth-1pjRN2kphIs-unsplash.jpg`](assets/unsplash_images/will-suddreth-1pjRN2kphIs-unsplash.jpg) by [Will Suddreth](https://unsplash.com/@willsudds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/1pjRN2kphIs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
