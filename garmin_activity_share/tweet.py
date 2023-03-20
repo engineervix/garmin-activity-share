@@ -108,12 +108,14 @@ def main():
         day_and_time_of_day = get_day_and_time_of_day()
 
         status_options = [
-            f"👟 {day_and_time_of_day} run 🏃‍♂️\n Powered by @GarminFitness #BeatYesterday",
+            f"👟 {day_and_time_of_day} run 🏃‍♂️\nPowered by @GarminFitness #BeatYesterday",
             f"👟 {day_and_time_of_day} run 🏃‍♂️",
-            f"👟 {day_and_time_of_day} run 🏃‍♂️\n “Someone who is busier than you is running right now.” – @nike",
-            f"🏃‍♂️ {day_and_time_of_day} run 👟\n Powered by @GarminFitness #BeatYesterday",
+            f"👟 {day_and_time_of_day} run 🏃‍♂️\n“There are clubs you can’t belong to, neighbours you can’t live in, schools you can’t get into, but the roads are always open.” – @nike",
+            f"👟 {day_and_time_of_day} run 🏃‍♂️\n“A run begins the moment you forget you are running.” – @adidas",
+            f"🏃‍♂️ {day_and_time_of_day} run 👟\nPowered by @GarminFitness #BeatYesterday",
             f"🏃‍♂️ {day_and_time_of_day} run 👟",
-            f"🏃‍♂️ {day_and_time_of_day} run 👟\n “If you can't fly then run, if you can't run then walk, if you can't"
+            f"🏃‍♂️ {day_and_time_of_day} run 👟\n“Success isn’t given. It’s earned on the track, the field, the gym. With blood, sweat, and the occasional tear.” – @nike",
+            f"🏃‍♂️ {day_and_time_of_day} run 👟\n“If you can't fly then run, if you can't run then walk, if you can't"
             " walk then crawl, but whatever you do you have to keep moving forward”. – Martin Luther King Jr",
         ]
 
