@@ -137,7 +137,7 @@ You can adjust the cron schedule in [`app.json`](app.json) to suit your preferen
 
 ## TODO
 
-- [ ] Save session to REDIS, instead of a JSON file
+- [x] Save session to REDIS, instead of a JSON file
 - [ ] instead of showing the time as UTC on share image, use local time
 - [ ] Fix the PYTHONPATH problem
 - [ ] Write tests
