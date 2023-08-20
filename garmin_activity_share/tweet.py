@@ -26,7 +26,14 @@ REDIS_URL = os.getenv("REDIS_URL")
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-api = tweepy.API(auth, wait_on_rate_limit=True)
+client_v1 = tweepy.API(auth, wait_on_rate_limit=True)
+
+client_v2 = tweepy.Client(
+    consumer_key=CONSUMER_KEY,
+    consumer_secret=CONSUMER_SECRET,
+    access_token=ACCESS_TOKEN,
+    access_token_secret=ACCESS_TOKEN_SECRET,
+)
 
 # Get the directory containing the script
 script_dir = Path(__file__).parent
@@ -37,7 +44,7 @@ project_dir = script_dir.parent
 
 def verify_credentials():
     try:
-        api.verify_credentials()
+        client_v1.verify_credentials()
         logger.info("Authentication OK")
     except Exception:
         logger.error("Error during authentication")
@@ -92,7 +99,7 @@ def get_day_and_time_of_day():
 
 def main():
     # ===== Here's an example tweet (no image) ===== #
-    # api.update_status("My first tweet powered by #python 🐍 and #tweepy! 😃 🚀\n https://github.com/tweepy/tweepy")
+    # client_v2.create_tweet(text="My first tweet powered by #python 🐍 and #tweepy! 😃 🚀\n https://github.com/tweepy/tweepy")
 
     # ===== And now, tweet with image  ===== #
 
@@ -122,8 +129,8 @@ def main():
         status = random.choice(status_options)
 
         try:
-            media = api.media_upload(filename=image)
-            api.update_status(status=status, media_ids=[media.media_id])
+            media = client_v1.media_upload(filename=image)
+            client_v2.create_tweet(text=status, media_ids=[media.media_id])
             logger.info("Woohoo! Your twitter status has been updated 🚀")
         except Exception as err:
             logger.error("Error encounterd while attempting to update your twitter status: %s", err)
