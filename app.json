@@ -1,0 +1,8 @@
+{
+  "cron": [
+    {
+      "command": "inv tweet",
+      "schedule": "30 10,22 * * 1-6"
+    }
+  ]
+}
