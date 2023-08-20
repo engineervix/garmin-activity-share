@@ -4,6 +4,29 @@ All notable changes to this project will be documented here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project attempts to adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0](https://github.com/engineervix/garmin-activity-share/compare/v0.2.0...v0.3.0) (2023-08-20)
+
+
+### 📝 Docs
+
+* fix errors in CONTRIBUTION guide ([5760632](https://github.com/engineervix/garmin-activity-share/commit/5760632e65e60b2443cb731f24e01fa6c6a42e6d))
+
+
+### 🐛 Bug Fixes
+
+* use updated URL for flake8 hook ([6a219a3](https://github.com/engineervix/garmin-activity-share/commit/6a219a3ce8416c068eba30b518978411cde03573))
+
+
+### ⚙️ Build System
+
+* **deps-dev:** update redis docker tag to v7.2 ([a07438d](https://github.com/engineervix/garmin-activity-share/commit/a07438da267f70be5d52d5547435170bc3c63e37))
+* **deps:** bump pip-tools and tweepy ([4d8fb28](https://github.com/engineervix/garmin-activity-share/commit/4d8fb28f51b6211f9e44b1427926911498ec127c))
+
+
+### 🚀 Features
+
+* use v2 of the twitter API for posting tweets ([8f810c2](https://github.com/engineervix/garmin-activity-share/commit/8f810c2f777b974318781061a587bfbf750f2e57))
+
 ## [v0.2.0](https://github.com/engineervix/garmin-activity-share/compare/v0.1.0...v0.2.0) (2022-12-30)
 
 

@@ -33,7 +33,7 @@ sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
 default_section = "THIRDPARTY"
 
 [tool.commitizen]
-version = "0.2.0"
+version = "0.3.0"
 version_files = [
     "garmin_activity_share/__init__.py",
 ]
