@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout Code Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install Dependencies
         run: |
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout Code Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install Dependencies
         run: |
@@ -59,7 +59,7 @@ jobs:
 
     steps:
       - name: Checkout Code Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install Dependencies
         run: |
@@ -99,7 +99,7 @@ jobs:
 
     steps:
       - name: Checkout Code Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       # https://github.com/actions/runner/issues/652
       # - name: Get pip cache dir
@@ -170,7 +170,7 @@ jobs:
 
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
